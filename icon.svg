@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2836"/><stop offset="1" stop-color="#0b1117"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffb72e" stop-opacity=".55"/><stop offset="1" stop-color="#ffb72e" stop-opacity="0"/></radialGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#ff9f1a"/></linearGradient>
+    <linearGradient id="pv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d6a96"/><stop offset="1" stop-color="#1d3a58"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="232" r="210" fill="url(#glow)"/>
+  <g stroke="#ffc54d" stroke-width="18" stroke-linecap="round">
+    <path d="M256 70v42M128 122l28 30M384 122l-28 30M76 238h40M436 238h-40"/>
+  </g>
+  <circle cx="256" cy="238" r="92" fill="url(#sun)"/>
+  <!-- dak met panelen -->
+  <path d="M40 512 L256 300 L472 512 Z" fill="#0b1117"/>
+  <path d="M96 512 L256 352 L416 512 Z" fill="url(#pv)"/>
+  <g stroke="#0b1117" stroke-width="8">
+    <path d="M256 352V512M176 432H336M136 472H376M216 392H296"/>
+    <path d="M216 392 L176 512M296 392 L336 512"/>
+  </g>
+  <path d="M96 512 L256 352 L416 512" fill="none" stroke="#ffb72e" stroke-width="10" stroke-linejoin="round" opacity=".9"/>
+</svg>
