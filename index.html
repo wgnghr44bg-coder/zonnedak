@@ -224,7 +224,7 @@ function render(d){
   let v;
   if (tk < 2) v = "Weinig zon vandaag. De batterij laadt vooral uit het net op de goedkope uren, en dat is normaal.";
   else if (ts < 3) v = `Je panelen dekken ongeveer ${Math.round(Math.min(100, tk / S.use * 100))}% van je verbruik. Er blijft weinig over voor de batterij.`;
-  else if (ts < 6) v = "Redelijke zondag. Een deel van de batterij wordt met eigen zonnestroom gevuld.";
+  else if (ts < 6) v = "Redelijke zonnedag.Een deel van de batterij wordt met eigen zonnestroom gevuld.";
   else v = "Zonnige dag. De batterij kan grotendeels met eigen zonnestroom vol. Zet de wasmachine of vaatwasser in de middag aan.";
   $("verdict").textContent = v;
 
