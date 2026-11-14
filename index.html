@@ -137,7 +137,7 @@ const localKey = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate
 const MONTHS = ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
 const MONTH_PCT = [2.5,4.5,8,11.5,14,14,14,11.5,8.5,6.5,3,2]; // aandeel jaaropbrengst NL (som 100)
 const DAYS_IN = [31,28,31,30,31,30,31,31,30,31,30,31];
-const SPEC = 875; // kWh per kWp per jaar bij zuid 35° in Zuid-Nederland
+const SPEC = 1250; // kWh per kWp per jaar: eigen meting 2025 (3.774 kWh / 3,01 kWp)
 
 let S = load();
 function load(){ try { return Object.assign({}, DEF, JSON.parse(localStorage.getItem("zonnedak") || "{}")); } catch(e){ return {...DEF}; } }
@@ -207,7 +207,8 @@ function render(d){
   const byDay = {};
   hours.forEach(h => (byDay[h.date] ||= []).push(h));
   SUN = {};
-  hours.forEach(h => { SUN[`${h.date} ${pad(h.hour)}`] = h.kw; });
+  // waarde op uur H hoort bij het uur ervoor (H-1 tot H); koppel die aan het prijsuur dat om H-1 begint
+  hours.forEach(h => { if (h.hour > 0) SUN[`${h.date} ${pad(h.hour-1)}`] = h.kw; });
   const dates = Object.keys(byDay).slice(0,3);
   const today = byDay[dates[0]];
 
@@ -224,7 +225,7 @@ function render(d){
   let v;
   if (tk < 2) v = "Weinig zon vandaag. De batterij laadt vooral uit het net op de goedkope uren, en dat is normaal.";
   else if (ts < 3) v = `Je panelen dekken ongeveer ${Math.round(Math.min(100, tk / S.use * 100))}% van je verbruik. Er blijft weinig over voor de batterij.`;
-  else if (ts < 6) v = "Redelijke zonnedag.Een deel van de batterij wordt met eigen zonnestroom gevuld.";
+  else if (ts < 6) v = "Redelijke zonnedag. Een deel van de batterij wordt met eigen zonnestroom gevuld.";
   else v = "Zonnige dag. De batterij kan grotendeels met eigen zonnestroom vol. Zet de wasmachine of vaatwasser in de middag aan.";
   $("verdict").textContent = v;
 
